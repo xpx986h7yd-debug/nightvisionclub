@@ -1,5 +1,25 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root{
+  --brand-red:#ff003c;          /* rouge vif */
+  --brand-red-soft:#ff1a4e;     /* léger rosé pour le dégradé */
+  --brand-glow:rgba(255,0,60,.55);
+}
 
-html, body { height: 100%; background: #000; }
+@keyframes neonPulse {
+  0%,100% { opacity:.55; filter: blur(18px); transform: scale(1.00); }
+  50%     { opacity:.9;  filter: blur(22px); transform: scale(1.02); }
+}
+@keyframes borderGlow {
+  0%,100% { box-shadow: 0 0 0 rgba(255,0,60,0), 0 0 35px var(--brand-glow); }
+  50%     { box-shadow: 0 0 0 rgba(255,0,60,0), 0 0 55px var(--brand-glow); }
+}
+
+/* utilitaires */
+.text-brand { color: var(--brand-red); }
+.bg-brand { background: var(--brand-red); color:#000; }
+.bg-brand-soft { background: linear-gradient(90deg,var(--brand-red),var(--brand-red-soft)); color:#000; }
+.shadow-brand { box-shadow: 0 0 25px var(--brand-glow); }
+.glow-ring { position: absolute; inset:-2px; border-radius: 18px;
+  background: radial-gradient(60% 60% at 50% 50%, var(--brand-red) 0%, transparent 60%);
+  animation: neonPulse 2.8s ease-in-out infinite;
+  pointer-events:none; }
+.glow-border { animation: borderGlow 2.6s ease-in-out infinite; }
