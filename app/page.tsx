@@ -3,30 +3,35 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-zinc-200 selection:bg-red-500/40">
-      {/* Gradient + noise */}
-      <div className="pointer-events-none fixed inset-0 [background:radial-gradient(1200px_600px_at_50%_-10%,rgba(244,63,94,.18),transparent_60%),radial-gradient(800px_400px_at_10%_10%,rgba(244,63,94,.12),transparent_60%),radial-gradient(800px_400px_at_90%_10%,rgba(255,255,255,.06),transparent_60%)]"></div>
+    <main className="min-h-screen bg-black text-zinc-200 selection:bg-[#ff003c]/40">
+      {/* Fond néon + bruit */}
+      <div className="pointer-events-none fixed inset-0 [background:radial-gradient(1100px_520px_at_50%_-10%,rgba(255,0,60,.18),transparent_60%),radial-gradient(800px_360px_at_10%_10%,rgba(255,0,60,.12),transparent_60%),radial-gradient(800px_360px_at_90%_10%,rgba(255,255,255,.06),transparent_60%)]"></div>
 
       <nav className="sticky top-0 z-10 backdrop-blur supports-[backdrop-filter]:bg-black/40 border-b border-white/5">
         <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
           <Link href="/" className="group inline-flex items-center gap-2">
-            <div className="size-6 rounded-full bg-red-500/90 shadow-[0_0_25px_6px_rgba(244,63,94,.45)]" />
+            <div className="relative size-6 rounded-full bg-brand-soft">
+              <span className="absolute inset-0 rounded-full bg-brand opacity-70 blur-md animate-[neonPulse_2.6s_ease-in-out_infinite]"></span>
+            </div>
             <span className="font-semibold tracking-wide">
-              <span className="text-red-400">Night</span> Vision
+              <span className="text-brand">Night</span> Vision
             </span>
           </Link>
           <div className="flex items-center gap-3">
             <Link
               href="/chat"
-              className="rounded-xl border border-white/10 px-3 py-1.5 hover:border-red-500/60 hover:text-white transition"
+              className="rounded-xl border border-white/10 px-3 py-1.5 hover:border-white/25 hover:text-white transition"
             >
               Chat
             </Link>
             <a
               href="#cta"
-              className="rounded-xl bg-red-500/90 px-3.5 py-1.5 font-medium text-black hover:bg-red-400 transition shadow-[0_0_20px_rgba(244,63,94,.35)]"
+              className="relative rounded-xl px-3.5 py-1.5 font-medium transition"
             >
-              Essayer maintenant
+              <span className="absolute -inset-0.5 rounded-xl bg-[radial-gradient(80%_80%_at_50%_50%,rgba(255,0,60,.55),transparent)] blur-md animate-[neonPulse_2.8s_ease-in-out_infinite]"></span>
+              <span className="relative inline-block bg-brand-soft shadow-brand px-3.5 py-1.5 rounded-xl">
+                Essayer maintenant
+              </span>
             </a>
           </div>
         </div>
@@ -36,18 +41,23 @@ export default function Home() {
       <section className="relative">
         <div className="mx-auto max-w-6xl px-4 pt-24 pb-16 text-center">
           <h1 className="text-4xl md:text-6xl font-semibold leading-tight">
-            Le chat qui voit <span className="text-red-400">dans le noir</span>
+            Le chat qui voit <span className="text-brand">dans le noir</span>
           </h1>
           <p className="mt-5 text-zinc-400 md:text-lg">
             Night Vision analyse, répond et anticipe. Rapide. Discret. Taillé pour la nuit.
           </p>
+
           <div className="mt-8 flex items-center justify-center gap-3">
             <Link
               href="/chat"
-              className="rounded-2xl bg-red-500/90 px-6 py-3 text-black font-semibold hover:bg-red-400 transition shadow-[0_0_30px_rgba(244,63,94,.35)]"
+              className="relative rounded-2xl glow-border"
             >
-              Ouvrir le chat
+              <span className="glow-ring rounded-2xl"></span>
+              <span className="relative inline-block bg-brand-soft px-6 py-3 font-semibold rounded-2xl shadow-brand hover:opacity-90 transition">
+                Ouvrir le chat
+              </span>
             </Link>
+
             <a
               href="#features"
               className="rounded-2xl border border-white/10 px-6 py-3 hover:border-white/25 transition"
@@ -56,18 +66,21 @@ export default function Home() {
             </a>
           </div>
 
-          {/* mock “terminal” */}
-          <div className="mt-14 mx-auto max-w-4xl rounded-2xl border border-white/10 bg-zinc-950/60 p-4 text-left shadow-[0_0_60px_rgba(244,63,94,.12)]">
-            <div className="flex gap-1 pb-3">
-              <div className="size-2.5 rounded-full bg-red-500/80" />
-              <div className="size-2.5 rounded-full bg-yellow-400/70" />
-              <div className="size-2.5 rounded-full bg-green-500/70" />
-            </div>
-            <pre className="whitespace-pre-wrap text-sm md:text-base text-zinc-300">
+          {/* mock “terminal” avec glow */}
+          <div className="relative mt-14 mx-auto max-w-4xl rounded-2xl border border-white/10 bg-zinc-950/60 p-4 text-left overflow-hidden">
+            <div className="absolute -inset-px rounded-2xl opacity-60 bg-[radial-gradient(70%_70%_at_50%_-10%,rgba(255,0,60,.25),transparent_60%)] blur-lg animate-[neonPulse_3s_ease-in-out_infinite]" />
+            <div className="relative">
+              <div className="flex gap-1 pb-3">
+                <div className="size-2.5 rounded-full bg-[#ff003c]/90" />
+                <div className="size-2.5 rounded-full bg-yellow-400/70" />
+                <div className="size-2.5 rounded-full bg-green-500/70" />
+              </div>
+              <pre className="whitespace-pre-wrap text-sm md:text-base text-zinc-300">
 {`> nightvision: status
 Night Vision — Online ✅
 Ready to assist. Type your request or /chat`}
-            </pre>
+              </pre>
+            </div>
           </div>
         </div>
       </section>
@@ -80,43 +93,12 @@ Ready to assist. Type your request or /chat`}
             ["Mémoire contextuelle", "Comprend la conversation et adapte son ton au fil des échanges."],
             ["Mode nocturne total", "Design sobre, lisible et non intrusif. Idéal pour travailler tard."],
           ].map(([title, desc]) => (
-            <div key={title} className="group rounded-2xl border border-white/10 p-5 bg-zinc-950/50 hover:border-red-500/40 transition">
-              <div className="mb-3 h-8 w-8 rounded-lg bg-red-500/20 group-hover:bg-red-500/30" />
-              <h3 className="font-semibold">{title}</h3>
-              <p className="mt-2 text-sm text-zinc-400">{desc}</p>
+            <div key={title} className="group relative rounded-2xl border border-white/10 p-5 bg-zinc-950/50 hover:border-white/20 transition overflow-hidden">
+              <span className="pointer-events-none absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-60 blur-lg animate-[neonPulse_2.8s_ease-in-out_infinite] bg-[radial-gradient(50%_50%_at_50%_0%,rgba(255,0,60,.35),transparent_60%)]"></span>
+              <h3 className="relative font-semibold">{title}</h3>
+              <p className="relative mt-2 text-sm text-zinc-400">{desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* SHOWCASE */}
-      <section className="border-t border-white/5">
-        <div className="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-2 gap-8">
-          <div className="rounded-2xl border border-white/10 p-6 bg-gradient-to-br from-zinc-950 to-black">
-            <h4 className="text-lg font-semibold">Plug & Play</h4>
-            <p className="mt-2 text-zinc-400">
-              Une API simple pour brancher Night Vision sur vos outils internes, site, ou support.
-            </p>
-            <pre className="mt-5 text-xs md:text-sm overflow-x-auto rounded-xl border border-white/10 p-4 bg-black/60">
-{`POST /api/chat
-{
-  "messages": [
-    { "role": "user", "content": "Analyse ce log nocturne" }
-  ]
-}`}
-            </pre>
-          </div>
-          <div className="rounded-2xl border border-white/10 p-6 bg-zinc-950/60">
-            <h4 className="text-lg font-semibold">Sécurité & confidentialité</h4>
-            <p className="mt-2 text-zinc-400">
-              Journaux chiffrés, stockage minimal, et contrôle précis des accès.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-              <li>• Chiffrement en transit (TLS)</li>
-              <li>• Journaux expirables</li>
-              <li>• Environnements isolés</li>
-            </ul>
-          </div>
         </div>
       </section>
 
@@ -127,9 +109,12 @@ Ready to assist. Type your request or /chat`}
           <p className="mt-2 text-zinc-400">Démarre une session et teste le bot dès maintenant.</p>
           <Link
             href="/chat"
-            className="mt-6 inline-block rounded-2xl bg-red-500/90 px-6 py-3 text-black font-semibold hover:bg-red-400 transition shadow-[0_0_30px_rgba(244,63,94,.35)]"
+            className="relative inline-block rounded-2xl glow-border mt-6"
           >
-            Lancer le chat
+            <span className="glow-ring rounded-2xl"></span>
+            <span className="relative inline-block bg-brand-soft px-6 py-3 text-black font-semibold rounded-2xl shadow-brand hover:opacity-90 transition">
+              Lancer le chat
+            </span>
           </Link>
         </div>
       </section>
